@@ -21,3 +21,7 @@ def showpost(request, slug):
             return render(request, 'blog-single.html', locals())
     except:
         return redirect('/')
+
+
+def blog(request):
+    return render(request, 'blog.html')
