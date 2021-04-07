@@ -241,90 +241,71 @@
 
     <!-- Portfolio Section Start -->
     <section  class="portfolio2 pt-110 pb-70 section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xl-8">
-            <div class="section-heading text-center mb-70">
-              <span class="text-primary text-uppercase mb-10 d-inline-block wow slideInUp"  data-wow-delay=".1s">projects</span>
-              <h2 class="wow flipInX" data-wow-delay=".1s">Our recent projects</h2>
-            </div>
-          </div>
-        </div>
+    <div class="container">
+    <div id ="treegraph" class="eui-col-xl-9" style="positive:relative;width:100%;height:90%;top: 13px;">
+					    	<div  id="main" style="width:100%;height:500px;"></div>
+    </div>
+    <script  type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script type="text/javascript">
+    var ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
+    var myChart = echarts.init(document.getElementById('main'));
+    var option;
 
-        <div class="row">
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="portfolio-item mb-30 bg-shadow item-common item-2 wow slideInUp" data-wow-delay="100ms" data-wow-duration="1500ms">
-              <div class="portfolio-img">
-                <img src="../static/images/portfolio/img1.jpg" alt="portfolio-image" class="img-fluid">
-              </div>
-              <div class="content">
-                <p>Data Reseasrch</p>
-                <h4><a href="portfolio-single.html">Automate Analysis</a></h4>
-              </div>
-            </div>
-          </div>
+    myChart.showLoading();
+    $.get(ROOT_PATH + '/data/asset/data/flare.json', function (data) {
+        myChart.hideLoading();
 
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="portfolio-item mb-30 bg-shadow item-common item-2 wow slideInUp"  data-wow-delay="300ms" data-wow-duration="1500ms">
-              <div class="portfolio-img">
-                <img src="../static/images/portfolio/img2.jpg" alt="portfolio-image" class="img-fluid">
-              </div>
-              <div class="content">
-                <p>Data Analysis</p>
-                <h4><a href="portfolio-single.html">Data Processing</a></h4>
-              </div>
-            </div>
-          </div>
+        myChart.setOption(option = {
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series:[
+                {
+                    type: 'tree',
 
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="portfolio-item mb-30 bg-shadow item-common wow item-2 slideInUp"   data-wow-delay="400ms" data-wow-duration="1500ms"> 
-              <div class="portfolio-img">
-                <img src="../static/images/portfolio/img3.jpg" alt="portfolio-image" class="img-fluid">
-              </div>
-              <div class="content">
-                <p>Big Data</p>
-                <h4><a href="portfolio-single.html">Data Implement</a></h4>
-              </div>
-            </div>
-          </div>
+                    data: [data],
 
-           <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="portfolio-item mb-30 bg-shadow item-common item-2 wow slideInUp"  data-wow-delay="600ms" data-wow-duration="1500ms">
-              <div class="portfolio-img">
-                <img src="../static/images/portfolio/img4.jpg" alt="portfolio-image" class="img-fluid">
-              </div>
-              <div class="content">
-                <p>Artificial Intelligence</p>
-                <h4><a href="portfolio-single.html">Data Consulting</a></h4>
-              </div>
-            </div>
-          </div>
+                    left: '2%',
+                    right: '2%',
+                    top: '8%',
+                    bottom: '20%',
 
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="portfolio-item mb-30 bg-shadow item-common item-2 wow slideInUp"  data-wow-delay="700ms" data-wow-duration="1500ms">
-              <div class="portfolio-img">
-                <img src="../static/images/portfolio/img5.jpg" alt="portfolio-image" class="img-fluid">
-              </div>
-              <div class="content">
-                <p>Machine Learning</p>
-                <h4><a href="portfolio-single.html">Automate Analytics</a></h4>
-              </div>
-            </div>
-          </div>
+                    symbol: 'emptyCircle',
 
-          <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="portfolio-item mb-30 bg-shadow item-common wow item-2 slideInUp"  data-wow-delay="800ms" data-wow-duration="1500ms">
-              <div class="portfolio-img">
-                <img src="../static/images/portfolio/img6.jpg" alt="portfolio-image" class="img-fluid">
-              </div>
-              <div class="content">
-                <p>Automation</p>
-                <h4><a href="portfolio-single.html">Data Research</a></h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                    orient: 'vertical',
+
+                    expandAndCollapse: true,
+
+                    label: {
+                        position: 'top',
+                        rotate: -90,
+                        verticalAlign: 'middle',
+                        align: 'right',
+                        fontSize: 9
+                    },
+
+                    leaves: {
+                        label: {
+                            position: 'bottom',
+                            rotate: -90,
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
+                    },
+
+                    animationDurationUpdate: 750
+                }
+            ]
+        });
+    });
+
+    option && myChart.setOption(option);
+    window.onresize = function () {
+      myChart.resize()
+}
+    </script>
+    </div>
     </section>
     <!-- Portfolio Section End -->
 
