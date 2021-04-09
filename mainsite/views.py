@@ -24,3 +24,7 @@ def showpost(request, slug):
 
 def blog(request):
     return render(request, 'blog.html')
+
+
+def page_not_found(request):
+    return render(request, '404.html')
